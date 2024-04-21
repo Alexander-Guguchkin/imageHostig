@@ -10,7 +10,6 @@ use function Symfony\Component\String\s;
 
 class ImageController extends Controller
 {
-    private $unicalNumber = 0;
     public function addImages(Request $request)
     {
         $files = $request->file('images');
@@ -24,10 +23,11 @@ class ImageController extends Controller
                 'path'=>$path,
             ]);
         }
+       $this->getImages();
     }
     public function getImages(){
-        $result = Image::all();
-        return response()->json($result);
+        $results = Image::all();
+        return view('home', ['results' => $results]);
     }
 
     private function formatFileName($filename)
@@ -55,14 +55,21 @@ class ImageController extends Controller
 
     public function unicalName($filename)
     {
+
         $images = Image::all();
         foreach ($images as $image) {
             if ($filename == $image->original_filename){
-                $newFilename = $filename .  " " . $this->unicalNumber+=1;
+                $newFilename =  ($image->id) . $filename ;
                 return $newFilename;
             }
         }
+        return $filename;
+    }
+    public function getImage($id)
+    {
+        $results = Image::find($id);
+        return view('imageWindow', ['results' => $results]);
     }
 }
 
-//icons8-vhod-v-sistemu,-v-kruzhke,-strelka-vpravo-50.png
+

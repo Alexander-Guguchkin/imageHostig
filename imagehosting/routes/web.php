@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 
-Route::get('/', function () {
-    return view("home");
-});
+Route::get('/', [ ImageController::class, 'getImages' ])->name("getImages");
 Route::post('/addImages', [ ImageController::class, 'addImages' ])->name("addImages");
-Route::get('/getImages', [ ImageController::class, 'getImages' ])->name("getImages");
-Route::get('/deleteImages/{id}', [ ImageController::class, 'deleteImages' ])->name("deleteImages");
+Route::get('/getImage/{id}', [ ImageController::class, 'getImage' ])->name("getImage");
 Route::get('/unicalName/{filename}', [ ImageController::class, 'unicalName' ]);

@@ -11,3 +11,7 @@ activeForm.addEventListener("click", ()=>{
 closeForm.addEventListener("click", ()=>{
     formWrap.style.display = "none";
 });
+
+fetch('getImages').then(response => response.json()).then(data => {
+    console.log(data)});
+

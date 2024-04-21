@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
+<header>
+    <nav>
+        <div><a href="/">Главная</a></div>
+    </nav>
+</header>
 {{$slot}}
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
