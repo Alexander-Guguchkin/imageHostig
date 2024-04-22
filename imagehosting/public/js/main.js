@@ -8,10 +8,8 @@ activeForm.addEventListener("click", ()=>{
     formWrap.style.display = "block";
 
 });
-closeForm.addEventListener("click", ()=>{
+closeForm.addEventListener("click", (e)=>{
+    e.preventDefault();
     formWrap.style.display = "none";
 });
-
-fetch('getImages').then(response => response.json()).then(data => {
-    console.log(data)});
 

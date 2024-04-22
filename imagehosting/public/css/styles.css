@@ -25,13 +25,18 @@ a{
 }
 .sec2{
     width: 10%;
+    height: 10%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
-
+button{
+    cursor: pointer;
+}
 .container{
     border: 1px solid gray  ;
-    width: 390px;
+    width: 340px;
     border-radius: 5px;
     background: #161b22;
 }
@@ -98,7 +103,6 @@ nav{
     padding: 5px;
     border-radius: 5px;
     color: #fff;
-    cursor: pointer;
 }
 .add{
     background: #238636;
@@ -138,4 +142,17 @@ nav{
     display: grid;
     place-items: center;
     height: 100%;
+}
+
+.sort{
+    width: 100%;
+    height: 20%;
+    background: none;
+    border: 1px solid gray;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }

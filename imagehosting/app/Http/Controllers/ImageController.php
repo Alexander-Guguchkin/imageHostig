@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Core\File;
 use Illuminate\Http\Request;
 use App\Models\Image;
-use function Pest\Laravel\json;
-use function Symfony\Component\String\s;
-
-
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
+use Ysgao\PhpZip\Zip;
 class ImageController extends Controller
 {
     public function addImages(Request $request)
@@ -23,11 +23,21 @@ class ImageController extends Controller
                 'path'=>$path,
             ]);
         }
-       $this->getImages();
+      return redirect('/');
     }
     public function getImages(){
         $results = Image::all();
         return view('home', ['results' => $results]);
+    }
+    public function getImagesJson()
+    {
+        $results = Image::all();
+        return response()->json($results);
+    }
+    public function getImageJson($id)
+    {
+        $results = Image::find($id);
+        return response()->json($results);
     }
 
     private function formatFileName($filename)
@@ -53,7 +63,7 @@ class ImageController extends Controller
         return $filename;
     }
 
-    public function unicalName($filename)
+    private function unicalName($filename)
     {
 
         $images = Image::all();
@@ -70,6 +80,26 @@ class ImageController extends Controller
         $results = Image::find($id);
         return view('imageWindow', ['results' => $results]);
     }
+    public function sortedByName(){
+        $images = Image::all();
+        $results = $images->sortBy('original_filename');
+        return view('home', ['results' => $results]);
+    }
+    public function sortedByDate(){
+        $images = Image::all();
+        $results = $images->sortBy('created_at');
+        return view('home', ['results' => $results]);
+    }
+
+
+    public function downloadImage($id)
+    {
+        $image = Image::find($id);
+        $path = public_path('/storage/' . $image->path);
+        return Storage::download($path, $image->filename);
+    }
+
+
 }
 
 

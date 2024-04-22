@@ -3,6 +3,8 @@
 
         <div class="main">
             <div class="sec1">
+
+
                 @isset($results)
                     @foreach($results as $result)
                     <div class="container">
@@ -11,9 +13,9 @@
                         </div>
                         <div class="info">
                             <div class="info__body">
-                                <div class="info__item"> <span>Название:</span><span>{{$result->original_filename}}</span></div>
-                                <div class="info__item"> <span>Дата:</span><span>{{$result->created_at}}</span></div>
-                                <div class="info__item"> <button>Скачать</button></div>
+                                <div class="info__item"> <span>Название:</span><span id="nameImage">{{$result->original_filename}}</span></div>
+                                <div class="info__item"> <span>Дата:</span><span id="dateImage">{{$result->created_at}}</span></div>
+                                <div class="info__item"> <a href="/downloadImage/{{$result->id}}">Скачать</a></div>
                             </div>
                         </div>
                     </div>
@@ -22,6 +24,8 @@
             </div>
             <div class="sec2">
                 <button class="active__form" id="activeForm">+</button>
+                <a href="/sortedByName" class="sort" id="sortName">Сортировка по названию</a>
+                <a href="/sortedByDate" class="sort" id="sortDate">Сортировка по дате</a>
             </div>
         </div>
         <div class="wrap__form">

@@ -6,8 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-zip": "*",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "nelexa/zip": "^4.0",
+        "ysgao/php-zip": "^0.2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
